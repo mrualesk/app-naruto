@@ -9,6 +9,7 @@ export default function ListCharacters() {
 
     return (
         <div>
+            <p>Ejemplo</p>
 
         </div>
     );
