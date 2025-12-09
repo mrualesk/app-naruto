@@ -1,18 +1,30 @@
-import { createRoot } from 'react-dom/client'
+import {createRoot} from 'react-dom/client'
 import './index.css'
 
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+import {createBrowserRouter} from "react-router";
+import {RouterProvider} from "react-router/dom";
 import Characters from "./pages/Characters.jsx";
+import Character from "./pages/Character.jsx";
+import RootLayout from "./components/RootLayout.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        Component: Characters,
+        Component: RootLayout,
+        children: [
+            {
+                index: true,
+                Component: Characters,
+            },
+            {
+                path: "detalle/:id",
+                Component: Character
+            }
+        ]
     },
 ]);
 
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router} />,
+    <RouterProvider router={router}/>,
 )
