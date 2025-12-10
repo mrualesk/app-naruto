@@ -17,7 +17,7 @@ export default function Character() {
 
     return (
         <PageContainer>
-            <div className="flex items-center justify-center mx-auto my-auto w-fit p-8 rounded-2xl border-2 relative bg-gray-300">
+            <div className="flex items-center justify-center mx-auto my-auto w-fit p-8 rounded-2xl shadow-2xl relative bg-gray-300">
                 <div>
                     {
                         character.name === "Jiraiya"
