@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from "react-router";
+import {FavoriteCharacterContext} from "../context/favoriteCharacterContext.js";
 
 export default function Header() {
+    const {favorites} = useContext(FavoriteCharacterContext)
+
     return (
         <header className="flex flex-row justify-between items-center mx-8">
             <Link to="/">
@@ -12,7 +15,7 @@ export default function Header() {
                 />
             </Link>
             <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-2xl cursor-pointer transition-all">
-                Personajes Favoritos
+                Personajes Favoritos {favorites.length}
             </button>
         </header>
     );

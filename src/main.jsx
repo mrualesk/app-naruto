@@ -6,6 +6,7 @@ import {RouterProvider} from "react-router/dom";
 import Characters from "./pages/Characters.jsx";
 import Character from "./pages/Character.jsx";
 import RootLayout from "./components/RootLayout.jsx";
+import FavoritesProvider from "./providers/FavoritesProvider.jsx";
 
 const router = createBrowserRouter([
     {
@@ -26,5 +27,7 @@ const router = createBrowserRouter([
 
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router}/>,
+    <FavoritesProvider>
+        <RouterProvider router={router}/>
+    </FavoritesProvider>
 )

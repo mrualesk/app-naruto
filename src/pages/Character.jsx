@@ -1,6 +1,7 @@
 import React from 'react';
 import RowInfo from "../components/RowInfo.jsx";
 import {useCharacter} from "../hooks/useCharacter.js";
+import PageContainer from "../components/PageContainer.jsx";
 
 export default function Character() {
 
@@ -15,8 +16,8 @@ export default function Character() {
     )
 
     return (
-        <>
-            <div className="flex items-center justify-center mx-auto my-auto w-fit p-8 rounded-2xl border-2">
+        <PageContainer>
+            <div className="flex items-center justify-center mx-auto my-auto w-fit p-8 rounded-2xl border-2 relative bg-gray-300">
                 <div>
                     {
                         character.name === "Jiraiya"
@@ -35,7 +36,10 @@ export default function Character() {
                     <RowInfo label="Equipo" value={character.personal?.team}/>
                     <RowInfo label="Clan" value={character.personal?.clan}/>
                 </div>
+                <div className="absolute top-4 right-4">
+                    <img src="/star-white.svg" alt="Icono No-Favorito" width="30" height="30"/>
+                </div>
             </div>
-        </>
+        </PageContainer>
     );
 };
