@@ -20,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: "detalle/:id",
                 Component: Character
+            },
+            {
+                path: "favoritos",
+                Component: Character
             }
         ]
     },
