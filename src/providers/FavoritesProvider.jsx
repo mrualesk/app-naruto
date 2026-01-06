@@ -13,13 +13,42 @@ export default function FavoritesProvider({children}) {
         console.log({test})
     }
 
-    const addFavorite = (character) => {
-        setFavorites([...favorites, character]);
+    const insertFavoritoToSupabase = async (id, name) => {
+
+        const {error} = await supabase
+            .from('favorites')
+            .insert([
+                {
+                    id_character: id,
+                    name,
+                }
+            ])
+        if (error) {
+            console.error('Error inserting user:', error)
+            return
+        }
     }
 
-    const removeFavorite = (id) => {
+    const deleteFavoriteFromSupabase = async (id) => {
+        const {error} = await supabase
+            .from('favorites')
+            .delete()
+            .eq('id_character', id)
+
+        if (error) {
+            console.error('Error deleting user:', error)
+        }
+    }
+
+    const addFavorite = async (character) => {
+        setFavorites([...favorites, character]);
+        await insertFavoritoToSupabase(character.id, character.name)
+    }
+
+    const removeFavorite = async (id) => {
         const favoritesFiltered = favorites.filter(character => character.id !== id)
         setFavorites(favoritesFiltered);
+        await deleteFavoriteFromSupabase(id)
     }
 
     const isFavorite = (id) => {

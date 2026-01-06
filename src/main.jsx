@@ -7,6 +7,7 @@ import Characters from "./pages/Characters.jsx";
 import Character from "./pages/Character.jsx";
 import RootLayout from "./components/RootLayout.jsx";
 import FavoritesProvider from "./providers/FavoritesProvider.jsx";
+import Favorites from "./pages/Favorites.jsx";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "favoritos",
-                Component: Character
+                Component: Favorites
             }
         ]
     },

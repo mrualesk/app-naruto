@@ -33,12 +33,12 @@ export default function CardDetailCharacter({character}) {
                 {
                     isCurrentCharacterFavorite
                         ? (
-                            <button onClick={() => removeFavorite(character.id)}>
+                            <button onClick={async () => await removeFavorite(character.id)}>
                                 <img src="/star-yelow.svg" alt="Icono No-Favorito" width="30" height="30"/>
                             </button>
                         )
                         : (
-                            <button onClick={() => addFavorite(character)}>
+                            <button onClick={async () => await addFavorite(character)}>
                                 <img src="/star-white.svg" alt="Icono No-Favorito" width="30" height="30"/>
                             </button>
                         )

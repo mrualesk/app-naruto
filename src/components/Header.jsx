@@ -14,9 +14,12 @@ export default function Header() {
                     className="w-30 h-30"
                 />
             </Link>
-            <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-2xl cursor-pointer transition-all">
-                Personajes Favoritos {favorites.length}
-            </button>
+            <Link to="/favoritos">
+                <button
+                    className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-2xl cursor-pointer transition-all">
+                    Personajes Favoritos {favorites.length}
+                </button>
+            </Link>
         </header>
     );
 };
