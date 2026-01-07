@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {API_URL} from "../constans/api.js";
+import {ApiNaruto} from "../services/api-naruto.js";
 
 export const useCharacter = () => {
 
@@ -12,8 +13,7 @@ export const useCharacter = () => {
 
     const fetchCharacter = async () => {
         try {
-            const respuesta = await fetch(`${API_URL}/characters/${id}`);
-            const data = await respuesta.json();
+            const data = await ApiNaruto.getCharacter(id);
             setCharacter(data);
         } catch (e) {
             console.error(e);

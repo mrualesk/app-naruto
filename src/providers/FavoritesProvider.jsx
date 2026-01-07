@@ -1,21 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {FavoriteCharacterContext} from "../context/favoriteCharacterContext.js";
 import supabase from "../services/supabase.js";
+import {ApiNaruto} from "../services/api-naruto.js";
 
 export default function FavoritesProvider({children}) {
     const [favorites, setFavorites] = useState([]);
 
-
-    const fetchFavorites = async () => {
-
-        const test = await supabase.from("favorites").select();
-
-        console.log({test})
-    }
-
     const insertFavoritoToSupabase = async (id, name) => {
 
-        const {error} = await supabase
+        const {data, error} = await supabase
             .from('favorites')
             .insert([
                 {
@@ -23,6 +16,7 @@ export default function FavoritesProvider({children}) {
                     name,
                 }
             ])
+
         if (error) {
             console.error('Error inserting user:', error)
             return
@@ -30,6 +24,7 @@ export default function FavoritesProvider({children}) {
     }
 
     const deleteFavoriteFromSupabase = async (id) => {
+
         const {error} = await supabase
             .from('favorites')
             .delete()
@@ -55,8 +50,30 @@ export default function FavoritesProvider({children}) {
         return favorites.some(character => character.id === id)
     }
 
+    const fetchFavoritos = async () => {
+
+        const {data, error} = await supabase
+            .from('favorites') // Nombre de la tabla
+            .select('id_character')      // Seleccionar todas las columnas
+
+        // Manejar errores
+        if (error) {
+            console.error('Error al obtener los datos:', error)
+            setFavorites([])
+            return
+        }
+
+        const idsFavorites = data.map(spItem => spItem.id_character)
+
+        const promiseFavorites = idsFavorites.map(id => ApiNaruto.getCharacter(id))
+
+        const favoritesFromSupabase = await Promise.all(promiseFavorites)
+
+        setFavorites(favoritesFromSupabase)
+    }
+
     useEffect(() => {
-        fetchFavorites();
+        fetchFavoritos()
     }, [])
 
     return (
