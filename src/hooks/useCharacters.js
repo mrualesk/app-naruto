@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {API_URL} from "../constans/api.js";
+import {ApiNaruto} from "../services/api-naruto.js";
 
 export const useCharacters = () => {
     const [characters, setCharacters] = useState([]);
@@ -7,9 +7,8 @@ export const useCharacters = () => {
 
     const fetchCharacters = async () => {
         try {
-            const response = await fetch(`${API_URL}/characters`);
-            const data = await response.json();
-            setCharacters(data.characters)
+            const data = await ApiNaruto.getCharacters();
+            setCharacters(data)
         } catch (e) {
             console.error(e);
             console.log("Error al traer los personajes");

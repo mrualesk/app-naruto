@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {API_URL} from "../constans/api.js";
 import {ApiNaruto} from "../services/api-naruto.js";
 
 export const useCharacter = () => {

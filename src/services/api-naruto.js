@@ -7,4 +7,9 @@ export class ApiNaruto {
         return await respuesta.json();
     }
 
+    static async getCharacters() {
+        const respuesta = await fetch(`${API_URL}/characters`);
+        const data = await respuesta.json();
+        return data.characters;
+    }
 }
